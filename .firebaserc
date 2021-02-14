@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "al-khwarizmi-6843c": {
+      "hosting": {
+        "app": [
+          "al-khwarizmi-6843c"
+        ]
+      }
+    }
+  }
+}

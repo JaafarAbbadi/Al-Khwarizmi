@@ -1,34 +1,32 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Scene, Engine, FreeCamera, Vector3, HemisphericLight, Mesh  } from 'babylonjs';
-@Component({
-  selector: 'app-explore-container',
-  templateUrl: './explore-container.component.html',
-  styleUrls: ['./explore-container.component.scss'],
-})
-export class ExploreContainerComponent implements OnInit {
-  @Input() name: string;
-  
-  constructor() {
-  }
 
-  ngOnInit() {
+@Injectable({
+  providedIn: 'root'
+})
+export class SceneService {
+  engine: Engine;
+  scene: Scene;
+  constructor() { }
+  init(canvas: HTMLCanvasElement){
     // Get the canvas DOM element
-    const canvas = document.getElementById('renderCanvas') as HTMLCanvasElement;
     // Load the 3D engine
-    const engine = new Engine(canvas, true, {preserveDrawingBuffer: true, stencil: true});
+    this.engine = new Engine(canvas, true, {preserveDrawingBuffer: true, stencil: true});
     // CreateScene function that creates and return the scene
     // call the createScene function
-    const scene = this.createScene(engine, canvas);
+    this.scene = this.createScene(this.engine, canvas);
     // run the render loop
-    engine.runRenderLoop(() => {
-        scene.render();
+    this.engine.runRenderLoop(() => {
+        this.scene.render();
     });
     // the canvas/window resize event handler
     window.addEventListener('resize', () => {
-        engine.resize();
+        this.engine.resize();
     });
   }
-  
+  destroy(){
+    this.engine.stopRenderLoop();
+  }
   createScene(engine: Engine, canvas: HTMLCanvasElement ){
     // Create a basic BJS Scene object
     const scene = new Scene(engine);
@@ -49,5 +47,4 @@ export class ExploreContainerComponent implements OnInit {
     // Return the created scene
     return scene;
   }
-
 }
