@@ -5,8 +5,8 @@
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
-    "start": "ionic serve",
-    "build": "ionic build",
+    "start": "ng serve --host=localhost --port=8100",
+    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -22,8 +22,6 @@
     "@angular/router": "~11.0.5",
     "@capacitor/core": "2.4.6",
     "@ckeditor/ckeditor5-angular": "^2.0.1",
-    "@ckeditor/ckeditor5-build-balloon": "^25.0.0",
-    "@ckeditor/ckeditor5-build-classic": "^25.0.0",
     "@ionic/angular": "^5.5.2",
     "@ngrx/effects": "^11.0.0",
     "@ngrx/router-store": "^11.0.0",
